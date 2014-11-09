@@ -198,8 +198,9 @@ public class AppletRadixSort extends JApplet {
 			}else if(e.getSource() == btnNewButton_3){
 				String re = textField.getText();
 				randomAmount = Integer.parseInt(re);
-				if(randomAmount <= 0){
+				if(randomAmount <= 0 || randomAmount > randomRange){
 					randomAmount = 10; // Avoiding error amount leads to program terminate.
+					textField.setText("10");
 				}
 				originalArray = new int[randomAmount];
 				originalArray = randomGenerateNumber();
