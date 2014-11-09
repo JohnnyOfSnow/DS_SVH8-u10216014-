@@ -26,7 +26,11 @@ public class AppletRadixSort extends JApplet {
 	static TextArea textArea_1; // Display all operation.
 	static TextArea textArea; // Display the random result.
 	static JFrame frame;
-	static int mode = 1;
+	static int randomAmount = 10;
+	static int randomRange = 10000;
+	static int[] originalArray;
+	static int[] sortArray;
+	static String displayArrayByString = "";
 
 	// In order to run standalone as a standalone application, we add the main method.
 	public static void main(String[] args) {
@@ -93,6 +97,7 @@ public class AppletRadixSort extends JApplet {
 		textField.setBounds(63, 107, 165, 21);
 		getContentPane().add(textField);
 		textField.setColumns(10);
+		textField.setText("10");
 		
 		JLabel lblNewLabel_3 = new JLabel("\u96A8\u6A5F\u7522\u751F\uFF1A");
 		lblNewLabel_3.setBounds(10, 153, 66, 15);
@@ -138,27 +143,76 @@ public class AppletRadixSort extends JApplet {
 		rdbtnNewRadioButton_3.addActionListener(new ButtonListener()); // Register listener.
 	}
 
+	static int[] randomGenerateNumber() {
+		
+		/**
+		 *  Create a array to store the random number.
+		 *  For loop can generate random number.
+		 */
+		int[] list = new int[randomAmount];
+		for (int i = 0; i < list.length; i++) {
+			list[i] = (int)(Math.random() * randomRange) + 1;
+		}
+
+		/**
+		 *  Checking the numbers whether are same or not.
+		 *  case: have the same number(should random another number)
+		 */
+		int RepeatCount = 0;
+		for (int i = 0; i < list.length; i++) {
+			for (int k = 0; k < i; k++) {
+				if(list[i] == list[k]){
+					list[i] = (int)(Math.random() * randomRange) + 1;
+					RepeatCount = RepeatCount + 1;
+				}
+			}
+			if (RepeatCount > 0) {
+				RepeatCount = 0;
+				i = i - 1;
+			}
+		}
+
+		return list;
+	}
+
+	static String IntegerArrayToString(int[] array){
+		StringBuilder op = new StringBuilder();
+		for(int i = 0; i < array.length; i++){
+			op.append(array[i] + " ");
+		}
+		String op1 = new String(op);
+		return op1;
+	}
+
 	// A class is responsible for action presentation.
 	private class ButtonListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e){
 			if(e.getSource() == btnNewButton){
-				textField.setText("next step");
+				textArea.setText("next step");
 			}else if(e.getSource() == btnNewButton_1){
-				textField.setText("all do");
+				textArea.setText("all do");
 			}else if(e.getSource() == btnNewButton_2){
-				textField.setText("clear all");
+				textArea.setText("clear all");
 			}else if(e.getSource() == btnNewButton_3){
-				textField.setText("random number");
+				String re = textField.getText();
+				randomAmount = Integer.parseInt(re);
+				if(randomAmount <= 0){
+					randomAmount = 10; // Avoiding error amount leads to program terminate.
+				}
+				originalArray = new int[randomAmount];
+				originalArray = randomGenerateNumber();
+				displayArrayByString = IntegerArrayToString(originalArray);
+				textArea.setText(displayArrayByString);
 			}else if(e.getSource() == rdbtnNewRadioButton){
-				mode = 1; // digit in thousands
+				randomRange = 10000; // digit in thousands
 			}else if(e.getSource() == rdbtnNewRadioButton_1){
-				mode = 2; // digit in hundrans
+				randomRange = 1000; // digit in hundrans
 			}else if(e.getSource() == rdbtnNewRadioButton_2){
-				mode = 3; // digit in tens
+				randomRange = 100; // digit in tens
 			}else if(e.getSource() == rdbtnNewRadioButton_3){
-				mode = 4; // digit in ones
+				randomRange = 10; // digit in ones
 			}else{
 
 			} // end if
