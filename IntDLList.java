@@ -103,4 +103,22 @@ public class IntDLList{
 		String result = new String(a);
 		return result;
 	} // end method print
+
+	public String print1(int number){
+		StringBuilder a = new StringBuilder();
+		if ( isEmpty() ) {
+			String result = new String(a);
+			return result;
+		} // end if
+
+		IntDLLNode current = head;
+
+		// while not at end of list, output current node's data
+		while ( current != null ) {
+			a.append(current.data + ",");
+			current = current.next;
+		} // end while
+		String result = new String(a);
+		return result;
+	} // end method print
 } // end class IntDLList
