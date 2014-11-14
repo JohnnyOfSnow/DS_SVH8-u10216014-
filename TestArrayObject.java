@@ -26,7 +26,9 @@ public class TestArrayObject{
 
 		int ret = 0;
 		for(int i = 0; i < oi.length; i++){
-			ret = oi[i] % 10;
+			ret = oi[i] / 1;
+			ret = ret % 10;
+
 			switch(ret){
 				case 0:
 					ui[0].addToDLListTail(oi[i]);
