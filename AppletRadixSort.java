@@ -31,6 +31,8 @@ public class AppletRadixSort extends JApplet {
 	static int[] originalArray;
 	static int[] sortArray;
 	static String displayArrayByString = "";
+	static int sortNotice = 1;
+	static int round = 1;
 
 	// In order to run standalone as a standalone application, we add the main method.
 	public static void main(String[] args) {
@@ -190,14 +192,118 @@ public class AppletRadixSort extends JApplet {
 		@Override
 		public void actionPerformed(ActionEvent e){
 			if(e.getSource() == btnNewButton){
-				textArea.setText("next step");
+				if(sortNotice <= randomRange){
+					IntDLList[] ui = new IntDLList[10];
+					IntDLList myNode0 = new IntDLList();
+					ui[0] = myNode0;
+					IntDLList myNode1 = new IntDLList();
+					ui[1] = myNode1;
+					IntDLList myNode2 = new IntDLList();
+					ui[2] = myNode2;
+					IntDLList myNode3 = new IntDLList();
+					ui[3] = myNode3;
+					IntDLList myNode4 = new IntDLList();
+					ui[4] = myNode4;
+					IntDLList myNode5 = new IntDLList();
+					ui[5] = myNode5;
+					IntDLList myNode6 = new IntDLList();
+					ui[6] = myNode6;
+					IntDLList myNode7 = new IntDLList();
+					ui[7] = myNode7;
+					IntDLList myNode8 = new IntDLList();
+					ui[8] = myNode8;
+					IntDLList myNode9 = new IntDLList();
+					ui[9] = myNode9;
+			
+					StringBuilder ip = new StringBuilder();
+					ip.append("Round " + round + ":\n");
+					int ret = 0;
+					for(int i = 0; i < originalArray.length; i++){
+						ret = originalArray[i] / sortNotice; // devide 1 to get the digit in ones 
+						ret = ret % 10;
+
+						switch(ret){
+							case 0:
+								ui[0].addToDLListTail(originalArray[i]);
+							break;
+							case 1:
+								ui[1].addToDLListTail(originalArray[i]);
+							break;
+							case 2:
+								ui[2].addToDLListTail(originalArray[i]);
+							break;
+							case 3:
+								ui[3].addToDLListTail(originalArray[i]);
+							break;
+							case 4:
+								ui[4].addToDLListTail(originalArray[i]);
+							break;
+							case 5:
+								ui[5].addToDLListTail(originalArray[i]);
+							break;
+							case 6:
+								ui[6].addToDLListTail(originalArray[i]);
+							break;
+							case 7:
+								ui[7].addToDLListTail(originalArray[i]);
+							break;
+							case 8:
+								ui[8].addToDLListTail(originalArray[i]);
+							break;
+							case 9:
+								ui[9].addToDLListTail(originalArray[i]);
+							break;
+							default:
+								System.out.println("Error!!");
+						} // end switch
+					} // end for loop
+
+
+
+				
+					StringBuilder iip = new StringBuilder();
+
+					for(int j = 0; j < ui.length; j++){
+						ip.append(ui[j].print(j) + "\n");
+					}
+
+					for(int p = 0; p < ui.length; p++){
+						iip.append(ui[p].print1(p));
+					}		
+
+					String h = new String(ip);
+					textArea_1.setText(h);
+
+					String f = new String(iip);
+
+					String[] reArray = f.split(",");
+					int[] reArray1 = new int[reArray.length];
+					for(int l = 0; l < reArray.length; l++){
+						reArray1[l] = Integer.parseInt(reArray[l]);
+					}
+
+					for(int y = 0; y < originalArray.length; y++){
+						originalArray[y] = reArray1[y];
+					}
+					sortNotice = sortNotice * 10;
+					round = round + 1;
+				}
+		
 			}else if(e.getSource() == btnNewButton_1){
 				textArea.setText("all do");
 			}else if(e.getSource() == btnNewButton_2){
-				textArea.setText("clear all");
+				textField.setText("");
+				textArea.setText("");
+				textArea_1.setText("");
 			}else if(e.getSource() == btnNewButton_3){
+				sortNotice = 1;
 				String re = textField.getText();
-				randomAmount = Integer.parseInt(re);
+				if(re.equals("")){
+					randomAmount = 10;
+				}else{
+					randomAmount = Integer.parseInt(re);
+				}
+					
 				if(randomAmount <= 0 || randomAmount > randomRange){
 					randomAmount = 10; // Avoiding error amount leads to program terminate.
 					textField.setText("10");
@@ -205,15 +311,23 @@ public class AppletRadixSort extends JApplet {
 				originalArray = new int[randomAmount];
 				originalArray = randomGenerateNumber();
 				displayArrayByString = IntegerArrayToString(originalArray);
-				textArea.setText(displayArrayByString);
+				textArea.setText(displayArrayByString);	
 			}else if(e.getSource() == rdbtnNewRadioButton){
 				randomRange = 10000; // digit in thousands
+				sortNotice = 1;
+				round = 1;
 			}else if(e.getSource() == rdbtnNewRadioButton_1){
 				randomRange = 1000; // digit in hundrans
+				sortNotice = 1;
+				round = 1;
 			}else if(e.getSource() == rdbtnNewRadioButton_2){
 				randomRange = 100; // digit in tens
+				sortNotice = 1;
+				round = 1;
 			}else if(e.getSource() == rdbtnNewRadioButton_3){
 				randomRange = 10; // digit in ones
+				sortNotice = 1;
+				round = 1;
 			}else{
 
 			} // end if
