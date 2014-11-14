@@ -26,7 +26,7 @@ public class TestArrayObject{
 
 		int ret = 0;
 		for(int i = 0; i < oi.length; i++){
-			ret = oi[i] / 1;
+			ret = oi[i] / 1; // devide 1 to get the digit in ones 
 			ret = ret % 10;
 
 			switch(ret){
@@ -65,15 +65,37 @@ public class TestArrayObject{
 			} // end switch
 		} // end for loop
 
+
+
 		StringBuilder ip = new StringBuilder();
+		StringBuilder iip = new StringBuilder();
 
 		for(int j = 0; j < ui.length; j++){
 			ip.append(ui[j].print(j) + "\n");
 		}
 
+		for(int p = 0; p < ui.length; p++){
+			iip.append(ui[p].print1(p));
+		}
+
 		String h = new String(ip);
 		System.out.println(h);
+
+		String f = new String(iip);
+		System.out.println(f);
+
+		String[] reArray = f.split(",");
+		int[] reArray1 = new int[reArray.length];
+		for(int l = 0; l < reArray.length; l++){
+			reArray1[l] = Integer.parseInt(reArray[l]);
+		}
+
+		for(int y = 0; y < oi.length; y++){
+			oi[y] = reArray1[y];
+		}
+		//test
+		for(int q = 0; q < oi.length; q++){
+			System.out.println("oi[" + q + "] is: " + oi[q]);
+		}
 	}
-
-
 }
