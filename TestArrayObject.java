@@ -1,8 +1,29 @@
 public class TestArrayObject{
 	public static void main(String[] args) {
 		int[] oi = {30,25,147,12,258,952,4,123};
-		IntDLList myNode = new IntDLList();
 		IntDLList[] ui = new IntDLList[10];
+		IntDLList myNode0 = new IntDLList();
+		ui[0] = myNode0;
+		IntDLList myNode1 = new IntDLList();
+		ui[1] = myNode1;
+		IntDLList myNode2 = new IntDLList();
+		ui[2] = myNode2;
+		IntDLList myNode3 = new IntDLList();
+		ui[3] = myNode3;
+		IntDLList myNode4 = new IntDLList();
+		ui[4] = myNode4;
+		IntDLList myNode5 = new IntDLList();
+		ui[5] = myNode5;
+		IntDLList myNode6 = new IntDLList();
+		ui[6] = myNode6;
+		IntDLList myNode7 = new IntDLList();
+		ui[7] = myNode7;
+		IntDLList myNode8 = new IntDLList();
+		ui[8] = myNode8;
+		IntDLList myNode9 = new IntDLList();
+		ui[9] = myNode9;
+		
+
 		int ret = 0;
 		for(int i = 0; i < oi.length; i++){
 			ret = oi[i] % 10;
